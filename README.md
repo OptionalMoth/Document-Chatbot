@@ -1,113 +1,63 @@
 # Document Chatbot with CMS Integration
 
-A web-based chatbot that can answer questions based on uploaded documents (PDF, DOCX, CSV, TXT) and imported CMS content using a vector database (Qdrant).
+A Retrieval-Augmented Generation (RAG) chatbot that answers questions based on uploaded documents and CMS content using vector search.
 
 ## Features
 
-- **File Upload**: Upload PDF, DOCX, CSV, and TXT files
-- **CMS Integration**: Import content from CMS via API
-- **Semantic Search**: Find relevant content using vector embeddings
-- **Bubble Chat UI**: Modern, responsive chat interface
-- **Real-time Processing**: Upload and query documents in real-time
-- **Source Attribution**: See which documents provided the answers
+- 📄 Upload and analyze PDF, DOCX, and CSV files
+- 🔍 Semantic search using vector embeddings
+- 💬 Interactive chat interface with source citations
+- 🗃️ CMS content ingestion (simulated with text input)
+- 🎨 Modern, responsive UI with dark mode
+- 🔗 Qdrant Cloud vector database integration
 
 ## Tech Stack
 
-### Frontend
-- HTML5, CSS3, JavaScript (Vanilla)
-- Responsive design with Flexbox/Grid
-- Font Awesome icons
-
 ### Backend
-- Python 3.9+
-- FastAPI (REST API framework)
-- Uvicorn (ASGI server)
+- **FastAPI** - Python web framework
+- **Sentence Transformers** - Local embedding generation
+- **Qdrant Cloud** - Vector database
+- **PyPDF, python-docx, pandas** - Document parsing
 
-### AI/ML Components
-- Sentence Transformers (`all-MiniLM-L6-v2`) for embeddings
-- Qdrant Cloud for vector storage and retrieval
-
-### File Processing
-- pdfminer.six (PDF parsing)
-- python-docx (DOCX parsing)
-- pandas (CSV processing)
+### Frontend
+- **HTML5, CSS3, JavaScript** - Frontend interface
+- **Font Awesome** - Icons
+- **Google Fonts** - Typography
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. Prerequisites
+
+- Python 3.8+
+- Node.js (optional, for serving frontend)
+- Qdrant Cloud account (free tier)
+
+### 2. Backend Setup
+
 ```bash
-git clone <your-repo-url>
-cd project
+# Navigate to backend directory
+cd backend
 
+# Create virtual environment
+python -m venv venv
 
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
 
+# Install dependencies
+pip install -r requirements.txt
 
+# Set up environment variables
+# Copy the example file
+cp .env.example .env
 
+# Edit .env with your credentials:
+# - QDRANT_URL: From Qdrant Cloud dashboard
+# - QDRANT_API_KEY: From Qdrant Cloud dashboard
+# - OPENAI_API_KEY: Optional, for enhanced answer generation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Document Chatbot with CMS Integration
-
-A web-based chatbot that can answer questions based on uploaded documents (PDF, DOCX, CSV, TXT) and imported CMS content using a vector database (Qdrant).
-
-## Features
-
-- **File Upload**: Upload PDF, DOCX, CSV, and TXT files
-- **CMS Integration**: Import content from CMS via API
-- **Semantic Search**: Find relevant content using vector embeddings
-- **Bubble Chat UI**: Modern, responsive chat interface
-- **Real-time Processing**: Upload and query documents in real-time
-- **Source Attribution**: See which documents provided the answers
-
-## Tech Stack
-
-### Frontend
-- HTML5, CSS3, JavaScript (Vanilla)
-- Responsive design with Flexbox/Grid
-- Font Awesome icons
-
-### Backend
-- Python 3.9+
-- FastAPI (REST API framework)
-- Uvicorn (ASGI server)
-
-### AI/ML Components
-- Sentence Transformers (`all-MiniLM-L6-v2`) for embeddings
-- Qdrant Cloud for vector storage and retrieval
-
-### File Processing
-- pdfminer.six (PDF parsing)
-- python-docx (DOCX parsing)
-- pandas (CSV processing)
-
-## Setup Instructions
-
-### 1. Clone or Download the Project
-```bash
-git clone <your-repo-url>
-cd document-chatbot
+# Run the backend server
+uvicorn app:app --reload --host 0.0.0.0 --port 8000

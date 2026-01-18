@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-robot"></i> Document Chatbot</h1>
+            <p class="subtitle">Upload documents or import CMS content and ask questions</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <div class="upload-section card">
+                <h2><i class="fas fa-cloud-upload-alt"></i> Upload Documents</h2>
+                <p>Supported formats: PDF, DOCX, CSV, TXT</p>
+                
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-file-upload"></i>
+                    <p>Drag & drop files here or click to browse</p>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.csv,.txt" multiple>
+                </div>
+                
+                <div class="upload-actions">
+                    <button class="btn btn-primary" onclick="uploadFiles()">
+                        <i class="fas fa-upload"></i> Upload Selected Files
+                    </button>
+                    <div id="fileList" class="file-list"></div>
+                </div>
+                
+                <div class="cms-section">
+                    <h3><i class="fas fa-database"></i> Import CMS Content</h3>
+                    <textarea id="cmsContent" placeholder="Paste CMS content here..."></textarea>
+                    <input type="text" id="cmsSource" placeholder="Source name (e.g., FAQ, Product Docs)">
+                    <button class="btn btn-secondary" onclick="importCMS()">
+                        <i class="fas fa-download"></i> Import CMS Content
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="chat-section card">
+                <div class="chat-header">
+                    <h2><i class="fas fa-comments"></i> Chat with Documents</h2>
+                    <div class="status-indicator">
+                        <span class="status-dot" id="statusDot"></span>
+                        <span id="statusText">Ready</span>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will appear here -->
+                    <div class="message bot welcome">
+                        <div class="message-content">
+                            <div class="message-text">
+                                Hello! I'm your document assistant. Upload documents or import CMS content, then ask me questions about them.
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <div class="input-container">
+                        <input type="text" id="chatInput" placeholder="Ask a question about your documents..." autocomplete="off">
+                        <button class="btn-send" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="input-hint">
+                        <i class="fas fa-lightbulb"></i> Press Enter to send, Shift+Enter for new line
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Document Chatbot with Qdrant Vector Database • FastAPI Backend</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -38,8 +38,8 @@ A Retrieval-Augmented Generation (RAG) chatbot that answers questions based on u
 # Navigate to backend directory
 cd backend
 
-# Create virtual environment
-python -m venv venv
+# Create virtual environment (Python 3.12)
+py -3.12 -m venv .venv
 
 # Activate virtual environment
 # On Windows:
